@@ -418,7 +418,7 @@ if (AreWeDarkMode==true)
             }
         }
 
-        //POWER BUTTON - CLICK
+        //POWER JSON READER - CLICK
         //GET AGC/LGC DATA & UPDATE THE RENDERER EVERY 100 ms.
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -439,7 +439,7 @@ if (AreWeDarkMode==true)
                         catch (Exception ex) 
                         { }
                     });
-                    Task.Delay(100).Wait();//Testing 100ms
+                    Task.Delay(100).Wait();
                 }
             });
         }
@@ -451,9 +451,8 @@ if (AreWeDarkMode==true)
             else { AreWeDarkMode = false; }
             if (AreWeDarkMode == true)
             {
-                //var uriSource = new Uri(@"/ExternalViewer/AGC/agc/images/agc-bg-darkLGC.png", UriKind.Relative);//This is a bug.. ImageSource needs to direct to the resource not this resolved file location..
-                //pack://application:,,,/WpfApplication1;component/Resources/CINTRA2016.png
-                var uriSource = new Uri(@"pack://application:,,,/AGC;component/images/agc-bg-dark.png", UriKind.Absolute);//Test to resolve above bug present in AGC/LGC builds..
+                //var uriSource = new Uri(@"/ExternalViewer/AGC/agc/images/agc-bg-darkLGC.png", UriKind.Relative);//ImageSource needs to direct to the resource not this resolved file location..
+                var uriSource = new Uri(@"pack://application:,,,/AGC;component/images/agc-bg-dark.png", UriKind.Absolute);//Test to resolve above present in AGC/LGC builds..
                 MainBackground.ImageSource = new BitmapImage(uriSource);
                 var uriSource1 = new Uri(@"/AGC;component/images/lights/unlit/unlit-darkmode.png", UriKind.Relative);
                 UplinkActy.Source = new BitmapImage(uriSource1);
