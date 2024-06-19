@@ -35,32 +35,23 @@
                                                     .:::::::-                             
                                                                                           
   External AGC DSKY for ReEntry CM/CSM
+  Compiled on VS2022 17.10.3 // .NET Framework 4.8.1
   by Sputterfish
-  This project uses font "Zerlina.otf" from the DSKY-FONTS project @ https://github.com/ehdorrii/dsky-fonts
+  This project uses fonts from the DSKY-FONTS project @ https://github.com/ehdorrii/dsky-fonts
   This project uses some code from the ReEntryUDP example project @ https://github.com/ReentryGame/ReentryUDP
 */
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Text.Json;
 using System.IO;
-using System.Windows.Threading;
-using System.Reflection.Emit;
-using System.Runtime.InteropServices;
+#if DEBUG
 using System.Diagnostics;
-using System.Windows.Forms;
-using System.Net.Sockets;
+#endif
+#pragma warning disable CS0168
+
 
 namespace AGC
 {
@@ -69,9 +60,7 @@ namespace AGC
     /// </summary>
     public partial class MainWindow : Window
     {
-
         public bool AreWeDarkMode;
-        public static int DeBugMode = 0;//DEBUG OUTPUTS for testing
 
         public MainWindow()
         {
@@ -79,13 +68,15 @@ namespace AGC
             AreWeDarkMode = false;
             MouseDown += Window_MouseDown;
         }
+
+        //MainWindow movement
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
                 DragMove();
         }
 
-        //MOVE AGC/LGC STORED DATA TO WPF
+        //Updates all the displayed values and flashes the anun lights
         public void UpdateStoredValues()
         {
 
@@ -360,7 +351,7 @@ if (AreWeDarkMode==true)
         {
             string folderRelativeFromLocalAppData = System.IO.Path.GetFullPath(System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "..", "LocalLow"));
             string fileName = folderRelativeFromLocalAppData + "//Wilhelmsen Studios//ReEntry//Export//Apollo//outputAGC.json";//Maybe subject to change in future ReEntry Updates
-                    
+
             try
             {
                 string jsonString = File.ReadAllText(fileName);
@@ -406,17 +397,29 @@ if (AreWeDarkMode==true)
                 AGCStorage.IlluminateKeyRel = AGCValues.IlluminateKeyRel;
                 AGCStorage.IlluminateOprErr = AGCValues.IlluminateOprErr;
             }
-            catch (Exception ex)
+#if DEBUG
+            catch (IOException e) when ((e.HResult & 0x0000FFFF) == 32)
             {
-                if (DeBugMode == 1)
-                {
-                    System.Windows.Forms.MessageBox.Show(ex.Message);
-                }
+                Debug.WriteLine("There is a sharing violation.");
+            }
+            catch (IOException e) when ((e.HResult & 0x0000FFFF) == 80)
+            {
+                Debug.WriteLine("The file already exists.");
+            }
+            catch (IOException e)
+            {
+                Debug.WriteLine($"An exception occurred:\nError code: " +
+                                  $"{e.HResult & 0x0000FFFF}\nMessage: {e.Message}");
+            }
+#endif
+            catch (Exception e)
+            { 
+                
             }
         }
 
-        //GET AGC/LGC DATA & UPDATE THE RENDERER EVERY 200 ms.
-        // BUG TRACK -- I suspect the issue with the timeout that randomly happens is related to this shitty code
+        //POWER BUTTON - CLICK
+        //GET AGC/LGC DATA & UPDATE THE RENDERER EVERY 100 ms.
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             
@@ -431,13 +434,10 @@ if (AreWeDarkMode==true)
                             GetAGCdata();
                             UpdateStoredValues();
                         }
+                        catch (IOException ex)
+                        { }
                         catch (Exception ex) 
-                        { 
-                            if (DeBugMode==1)
-                            {
-                                System.Windows.Forms.MessageBox.Show(ex.Message);
-                            }
-                        }
+                        { }
                     });
                     Task.Delay(100).Wait();//Testing 100ms
                 }

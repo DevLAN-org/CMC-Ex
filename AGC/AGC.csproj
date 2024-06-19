@@ -296,7 +296,7 @@
     <Resource Include="images\lights\unlit\unlit-darkmode.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\6714978.png" />
+    <Resource Include="images\darkmode.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\agc-bg-darkLGC.png" />

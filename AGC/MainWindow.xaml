@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:AGC"
         mc:Ignorable="d"
         Title="AGC" Height="800" Width="600" ResizeMode="NoResize" Topmost="True" WindowStyle="None" WindowStartupLocation="CenterOwner" Foreground="{x:Null}" AllowsTransparency="True" Icon="/AGC.ico">
-    <!-- Window.Resources allows us to define our template for a hidden WPF button - hidden meaning no obvious signs of being a clickable object -->
+    <!-- Window.Resources allows us to define our template for a hidden WPF button -->
     <Window.Resources>
         <ControlTemplate x:Key="NoMouseOverButtonTemplate"   
                  TargetType="Button">
@@ -81,7 +81,7 @@
 
         <Button x:Name="DarkMode" Template="{StaticResource NoMouseOverButtonTemplate}" Content="" HorizontalAlignment="Left" Margin="36,744,0,0" VerticalAlignment="Top" Height="40" Width="40" Click="DarkMode_Click" BorderBrush="#00000000" BorderThickness="0,0,0,0" Foreground="{x:Null}">
             <Button.Background>
-                <ImageBrush ImageSource="/images/6714978.png"/>
+                <ImageBrush ImageSource="/images/darkmode.png"/>
             </Button.Background>
         </Button>
         
