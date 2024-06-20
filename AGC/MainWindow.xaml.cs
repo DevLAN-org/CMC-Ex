@@ -1,11 +1,11 @@
 ﻿/*
-     ___       _______   ______         __________   ___ 
-    /   \     /  _____| /      |       |   ____\  \ /  / 
-   /  ^  \   |  |  __  |  ,----' ______|  |__   \  V  /  
-  /  /_\  \  |  | |_ | |  |     |______|   __|   >   <   
- /  _____  \ |  |__| | |  `----.       |  |____ /  .  \  
-/__/     \__\ \______|  \______|       |_______/__/ \__\ 
-                                                          
+  ______ .___  ___.   ______         __________   ___ 
+ /      ||   \/   |  /      |       |   ____\  \ /  / 
+|  ,----'|  \  /  | |  ,----' ______|  |__   \  V  /  
+|  |     |  |\/|  | |  |     |______|   __|   >   <   
+|  `----.|  |  |  | |  `----.       |  |____ /  .  \  
+ \______||__|  |__|  \______|       |_______/__/ \__\ 
+                                                                                                               
                                                                                            
              -+#*:                                                                        
            =**###%*:                                                                      
@@ -34,7 +34,7 @@
                                                    =-:-=+++**=--:::::...                  
                                                     .:::::::-                             
                                                                                           
-  External AGC DSKY for ReEntry CM/CSM
+  External CMC DSKY for ReEntry CM/CSM
   Compiled on VS2022 17.10.3 // .NET Framework 4.8.1
   by Sputterfish
   This project uses fonts from the DSKY-FONTS project @ https://github.com/ehdorrii/dsky-fonts
@@ -53,7 +53,7 @@ using System.Diagnostics;
 #pragma warning disable CS0168
 
 
-namespace AGC
+namespace CMC
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -80,15 +80,15 @@ namespace AGC
         public void UpdateStoredValues()
         {
 
-            Verb.Content = AGCStorage.VerbD1 + AGCStorage.VerbD2;
-            Noun.Content = AGCStorage.NounD1 + AGCStorage.NounD2;
-            Prog.Content = AGCStorage.ProgramD1 + AGCStorage.ProgramD2;
-            Register1.Content = AGCStorage.Register1Sign + " " + AGCStorage.Register1D1 + AGCStorage.Register1D2 + AGCStorage.Register1D3 + AGCStorage.Register1D4 + AGCStorage.Register1D5;
-            Register2.Content = AGCStorage.Register2Sign + " " + AGCStorage.Register2D1 + AGCStorage.Register2D2 + AGCStorage.Register2D3 + AGCStorage.Register2D4 + AGCStorage.Register2D5;
-            Register3.Content = AGCStorage.Register3Sign + " " + AGCStorage.Register3D1 + AGCStorage.Register3D2 + AGCStorage.Register3D3 + AGCStorage.Register3D4 + AGCStorage.Register3D5;
+            Verb.Content = CMCStorage.VerbD1 + CMCStorage.VerbD2;
+            Noun.Content = CMCStorage.NounD1 + CMCStorage.NounD2;
+            Prog.Content = CMCStorage.ProgramD1 + CMCStorage.ProgramD2;
+            Register1.Content = CMCStorage.Register1Sign + " " + CMCStorage.Register1D1 + CMCStorage.Register1D2 + CMCStorage.Register1D3 + CMCStorage.Register1D4 + CMCStorage.Register1D5;
+            Register2.Content = CMCStorage.Register2Sign + " " + CMCStorage.Register2D1 + CMCStorage.Register2D2 + CMCStorage.Register2D3 + CMCStorage.Register2D4 + CMCStorage.Register2D5;
+            Register3.Content = CMCStorage.Register3Sign + " " + CMCStorage.Register3D1 + CMCStorage.Register3D2 + CMCStorage.Register3D3 + CMCStorage.Register3D4 + CMCStorage.Register3D5;
 
             // COMP ACTY
-            if (AGCStorage.IlluminateCompLight==true)
+            if (CMCStorage.IlluminateCompLight==true)
             {
                 CompActy.Visibility = Visibility.Visible;
             }
@@ -96,241 +96,202 @@ namespace AGC
 
             //LEFT SIDE LIGHTS
             //UPLINK ACTY
-            if (AGCStorage.IlluminateUplinkActy > 0) 
+            if (CMCStorage.IlluminateUplinkActy > 0) 
             {
-                var uriSource = new Uri(@"/AGC;component/images/lights/lit/uplinkacty.png", UriKind.Relative);
+                var uriSource = new Uri(@"/CMC;component/images/lights/lit/uplinkacty.png", UriKind.Relative);
                 UplinkActy.Source = new BitmapImage(uriSource);
             }
             else
             {
                 if (AreWeDarkMode == true)
                 {
-                    var uriSource = new Uri(@"/AGC;component/images/lights/unlit/unlit-darkmode.png", UriKind.Relative);
+                    var uriSource = new Uri(@"/CMC;component/images/lights/unlit/unlit-darkmode.png", UriKind.Relative);
                     UplinkActy.Source = new BitmapImage(uriSource);
                 }
                 else
                 {
-                    var uriSource = new Uri(@"/AGC;component/images/lights/unlit/uplinkacty.png", UriKind.Relative);
+                    var uriSource = new Uri(@"/CMC;component/images/lights/unlit/uplinkacty.png", UriKind.Relative);
                     UplinkActy.Source = new BitmapImage(uriSource);
                 }
             }
             //NO ATT
-            if (AGCStorage.IlluminateNoAtt > 0)
+            if (CMCStorage.IlluminateNoAtt > 0)
             {
-                var uriSource = new Uri(@"/AGC;component/images/lights/lit/noatt.png", UriKind.Relative);
+                var uriSource = new Uri(@"/CMC;component/images/lights/lit/noatt.png", UriKind.Relative);
                 NoAtt.Source = new BitmapImage(uriSource);
             }
             else
             {
                 if (AreWeDarkMode == true)
                 {
-                    var uriSource = new Uri(@"/AGC;component/images/lights/unlit/unlit-darkmode.png", UriKind.Relative);
+                    var uriSource = new Uri(@"/CMC;component/images/lights/unlit/unlit-darkmode.png", UriKind.Relative);
                     NoAtt.Source = new BitmapImage(uriSource);
                 }
                 else
                 {
-                    var uriSource = new Uri(@"/AGC;component/images/lights/unlit/noatt.png", UriKind.Relative);
+                    var uriSource = new Uri(@"/CMC;component/images/lights/unlit/noatt.png", UriKind.Relative);
                     NoAtt.Source = new BitmapImage(uriSource);
                 }
             }
             //STBY
-            if (AGCStorage.IlluminateStby > 0)
+            if (CMCStorage.IlluminateStby > 0)
             {
-                var uriSource = new Uri(@"/AGC;component/images/lights/lit/stby.png", UriKind.Relative);
+                var uriSource = new Uri(@"/CMC;component/images/lights/lit/stby.png", UriKind.Relative);
                 Stby.Source = new BitmapImage(uriSource);
             }
             else
             {
                 if (AreWeDarkMode == true)
                 {
-                    var uriSource = new Uri(@"/AGC;component/images/lights/unlit/unlit-darkmode.png", UriKind.Relative);
+                    var uriSource = new Uri(@"/CMC;component/images/lights/unlit/unlit-darkmode.png", UriKind.Relative);
                     Stby.Source = new BitmapImage(uriSource);
                 }
                 else
                 {
-                    var uriSource = new Uri(@"/AGC;component/images/lights/unlit/stby.png", UriKind.Relative);
+                    var uriSource = new Uri(@"/CMC;component/images/lights/unlit/stby.png", UriKind.Relative);
                     Stby.Source = new BitmapImage(uriSource);
                 }
             }
             //KEY REL
-            if (AGCStorage.IlluminateKeyRel > 0)
+            if (CMCStorage.IlluminateKeyRel > 0)
             {
-                var uriSource = new Uri(@"/AGC;component/images/lights/lit/keyrel.png", UriKind.Relative);
+                var uriSource = new Uri(@"/CMC;component/images/lights/lit/keyrel.png", UriKind.Relative);
                 KeyRel.Source = new BitmapImage(uriSource);
             }
             else
             {
                 if (AreWeDarkMode == true)
                 {
-                    var uriSource = new Uri(@"/AGC;component/images/lights/unlit/unlit-darkmode.png", UriKind.Relative);
+                    var uriSource = new Uri(@"/CMC;component/images/lights/unlit/unlit-darkmode.png", UriKind.Relative);
                     KeyRel.Source = new BitmapImage(uriSource);
                 }
                 else
                 {
-                    var uriSource = new Uri(@"/AGC;component/images/lights/unlit/keyrel.png", UriKind.Relative);
+                    var uriSource = new Uri(@"/CMC;component/images/lights/unlit/keyrel.png", UriKind.Relative);
                     KeyRel.Source = new BitmapImage(uriSource);
                 }
             }
             //OPR ERR
-            if (AGCStorage.IlluminateOprErr > 0)
+            if (CMCStorage.IlluminateOprErr > 0)
             {
-                var uriSource = new Uri(@"/AGC;component/images/lights/lit/oprerr.png", UriKind.Relative);
+                var uriSource = new Uri(@"/CMC;component/images/lights/lit/oprerr.png", UriKind.Relative);
                 OprErr.Source = new BitmapImage(uriSource);
             }
             else
             {
                 if (AreWeDarkMode == true)
                 {
-                    var uriSource = new Uri(@"/AGC;component/images/lights/unlit/unlit-darkmode.png", UriKind.Relative);
+                    var uriSource = new Uri(@"/CMC;component/images/lights/unlit/unlit-darkmode.png", UriKind.Relative);
                     OprErr.Source = new BitmapImage(uriSource);
                 }
                 else
                 {
-                    var uriSource = new Uri(@"/AGC;component/images/lights/unlit/oprerr.png", UriKind.Relative);
+                    var uriSource = new Uri(@"/CMC;component/images/lights/unlit/oprerr.png", UriKind.Relative);
                     OprErr.Source = new BitmapImage(uriSource);
                 }
             }
 
             //RIGHT SIDE LIGHTS
             //TEMP
-            if (AGCStorage.IlluminateTemp > 0)
+            if (CMCStorage.IlluminateTemp > 0)
             {
-                var uriSource = new Uri(@"/AGC;component/images/lights/lit/temp.png", UriKind.Relative);
+                var uriSource = new Uri(@"/CMC;component/images/lights/lit/temp.png", UriKind.Relative);
                 Temp.Source = new BitmapImage(uriSource);
             }
             else
             {
                 if (AreWeDarkMode == true)
                 {
-                    var uriSource = new Uri(@"/AGC;component/images/lights/unlit/unlit-darkmode.png", UriKind.Relative);
+                    var uriSource = new Uri(@"/CMC;component/images/lights/unlit/unlit-darkmode.png", UriKind.Relative);
                     Temp.Source = new BitmapImage(uriSource);
                 }
                 else
                 {
-                    var uriSource = new Uri(@"/AGC;component/images/lights/unlit/temp.png", UriKind.Relative);
+                    var uriSource = new Uri(@"/CMC;component/images/lights/unlit/temp.png", UriKind.Relative);
                     Temp.Source = new BitmapImage(uriSource);
                 }
             }
             //GIMBAL LOCK
-            if (AGCStorage.IlluminateGimbalLock > 0)
+            if (CMCStorage.IlluminateGimbalLock > 0)
             {
-                var uriSource = new Uri(@"/AGC;component/images/lights/lit/gimballock.png", UriKind.Relative);
+                var uriSource = new Uri(@"/CMC;component/images/lights/lit/gimballock.png", UriKind.Relative);
                 Gimballock.Source = new BitmapImage(uriSource);
             }
             else
             {
                 if (AreWeDarkMode == true)
                 {
-                    var uriSource = new Uri(@"/AGC;component/images/lights/unlit/unlit-darkmode.png", UriKind.Relative);
+                    var uriSource = new Uri(@"/CMC;component/images/lights/unlit/unlit-darkmode.png", UriKind.Relative);
                     Gimballock.Source = new BitmapImage(uriSource);
                 }
                 else
                 {
-                    var uriSource = new Uri(@"/AGC;component/images/lights/unlit/gimballock.png", UriKind.Relative);
+                    var uriSource = new Uri(@"/CMC;component/images/lights/unlit/gimballock.png", UriKind.Relative);
                     Gimballock.Source = new BitmapImage(uriSource);
                 }
             }
             //PROG
-            if (AGCStorage.IlluminateProg > 0)
+            if (CMCStorage.IlluminateProg > 0)
             {
-                var uriSource = new Uri(@"/AGC;component/images/lights/lit/prog.png", UriKind.Relative);
+                var uriSource = new Uri(@"/CMC;component/images/lights/lit/prog.png", UriKind.Relative);
                 Program.Source = new BitmapImage(uriSource);
             }
             else
             {
                 if (AreWeDarkMode == true)
                 {
-                    var uriSource = new Uri(@"/AGC;component/images/lights/unlit/unlit-darkmode.png", UriKind.Relative);
+                    var uriSource = new Uri(@"/CMC;component/images/lights/unlit/unlit-darkmode.png", UriKind.Relative);
                     Program.Source = new BitmapImage(uriSource);
                 }
                 else
                 {
-                    var uriSource = new Uri(@"/AGC;component/images/lights/unlit/prog.png", UriKind.Relative);
+                    var uriSource = new Uri(@"/CMC;component/images/lights/unlit/prog.png", UriKind.Relative);
                     Program.Source = new BitmapImage(uriSource);
                 }
             }
             //RESTART
-            if (AGCStorage.IlluminateRestart > 0)
+            if (CMCStorage.IlluminateRestart > 0)
             {
-                var uriSource = new Uri(@"/AGC;component/images/lights/lit/restart.png", UriKind.Relative);
+                var uriSource = new Uri(@"/CMC;component/images/lights/lit/restart.png", UriKind.Relative);
                 Restart.Source = new BitmapImage(uriSource);
             }
             else
             {
                 if (AreWeDarkMode == true)
                 {
-                    var uriSource = new Uri(@"/AGC;component/images/lights/unlit/unlit-darkmode.png", UriKind.Relative);
+                    var uriSource = new Uri(@"/CMC;component/images/lights/unlit/unlit-darkmode.png", UriKind.Relative);
                     Restart.Source = new BitmapImage(uriSource);
                 }
                 else
                 {
-                    var uriSource = new Uri(@"/AGC;component/images/lights/unlit/restart.png", UriKind.Relative);
+                    var uriSource = new Uri(@"/CMC;component/images/lights/unlit/restart.png", UriKind.Relative);
                     Restart.Source = new BitmapImage(uriSource);
                 }
             }
             //TRACKER
-            if (AGCStorage.IlluminateTracker > 0)
+            if (CMCStorage.IlluminateTracker > 0)
             {
-                var uriSource = new Uri(@"/AGC;component/images/lights/lit/tracker.png", UriKind.Relative);
+                var uriSource = new Uri(@"/CMC;component/images/lights/lit/tracker.png", UriKind.Relative);
                 Tracker.Source = new BitmapImage(uriSource);
             }
             else
             {
                 if (AreWeDarkMode == true)
                 {
-                    var uriSource = new Uri(@"/AGC;component/images/lights/unlit/unlit-darkmode.png", UriKind.Relative);
+                    var uriSource = new Uri(@"/CMC;component/images/lights/unlit/unlit-darkmode.png", UriKind.Relative);
                     Tracker.Source = new BitmapImage(uriSource);
                 }
                 else
                 {
-                    var uriSource = new Uri(@"/AGC;component/images/lights/unlit/tracker.png", UriKind.Relative);
+                    var uriSource = new Uri(@"/CMC;component/images/lights/unlit/tracker.png", UriKind.Relative);
                     Tracker.Source = new BitmapImage(uriSource);
                 }
             }
-            /*
-             * Lights for ALT and VEL not present
-            //ALT
-            if (AGCStorage.IlluminateAlt > 0)
+
+            //Handles the remaining blank anun lights..
+            if (AreWeDarkMode==true)
             {
-                var uriSource = new Uri(@"/AGC;component/images/lights/lit/alt.png", UriKind.Relative);
-                Alt.Source = new BitmapImage(uriSource);
-            }
-            else
-            {
-                if (AreWeDarkMode == true)
-                {
-                    var uriSource = new Uri(@"/AGC;component/images/lights/unlit/unlit-darkmode.png", UriKind.Relative);
-                    Alt.Source = new BitmapImage(uriSource);
-                }
-                else
-                {
-                    var uriSource = new Uri(@"/AGC;component/images/lights/unlit/alt.png", UriKind.Relative);
-                    Alt.Source = new BitmapImage(uriSource);
-                }
-            }
-            //VEL
-            if (AGCStorage.IlluminateVel > 0)
-            {
-                var uriSource = new Uri(@"/AGC;component/images/lights/lit/vel.png", UriKind.Relative);
-                Vel.Source = new BitmapImage(uriSource);
-            }
-            else
-            {
-                if (AreWeDarkMode == true)
-                {
-                    var uriSource = new Uri(@"/AGC;component/images/lights/unlit/unlit-darkmode.png", UriKind.Relative);
-                    Vel.Source = new BitmapImage(uriSource);
-                }
-                else
-                {
-                    var uriSource = new Uri(@"/AGC;component/images/lights/unlit/vel.png", UriKind.Relative);
-                    Vel.Source = new BitmapImage(uriSource);
-                }
-            }*/
-//Handles the remaining blank anun lights..
-if (AreWeDarkMode==true)
-            {
-                var uriSource = new Uri(@"/AGC;component/images/lights/unlit/unlit-darkmode.png", UriKind.Relative);
+                var uriSource = new Uri(@"/CMC;component/images/lights/unlit/unlit-darkmode.png", UriKind.Relative);
                 Unlit1.Source = new BitmapImage(uriSource);
                 Unlit2.Source = new BitmapImage(uriSource);
                 Vel.Source = new BitmapImage(uriSource);
@@ -338,7 +299,7 @@ if (AreWeDarkMode==true)
             }
             else if (AreWeDarkMode==false)
             {
-                var uriSource = new Uri(@"/AGC;component/images/lights/unlit/unlit.png", UriKind.Relative);
+                var uriSource = new Uri(@"/CMC;component/images/lights/unlit/unlit.png", UriKind.Relative);
                 Unlit1.Source = new BitmapImage(uriSource);
                 Unlit2.Source = new BitmapImage(uriSource);
                 Vel.Source = new BitmapImage(uriSource);
@@ -355,47 +316,45 @@ if (AreWeDarkMode==true)
             try
             {
                 string jsonString = File.ReadAllText(fileName);
-                AGCValues AGCValues = JsonSerializer.Deserialize<AGCValues>(jsonString);
-                AGCStorage.VerbD1 = AGCValues.VerbD1;
-                AGCStorage.VerbD2 = AGCValues.VerbD2;
-                AGCStorage.NounD1 = AGCValues.NounD1;
-                AGCStorage.NounD2 = AGCValues.NounD2;
-                AGCStorage.ProgramD1 = AGCValues.ProgramD1;
-                AGCStorage.ProgramD2 = AGCValues.ProgramD2;
-                AGCStorage.Register1D1 = AGCValues.Register1D1;
-                AGCStorage.Register1D2 = AGCValues.Register1D2;
-                if (String.IsNullOrEmpty(AGCValues.Register1D3)) { AGCStorage.Register1D3 = " "; }
-                else { AGCStorage.Register1D3 = AGCValues.Register1D3; }
-                AGCStorage.Register1D4 = AGCValues.Register1D4;
-                AGCStorage.Register1D5 = AGCValues.Register1D5;
-                AGCStorage.Register1Sign = AGCValues.Register1Sign;
-                AGCStorage.Register2D1 = AGCValues.Register2D1;
-                AGCStorage.Register2D2 = AGCValues.Register2D2;
-                if (String.IsNullOrEmpty(AGCValues.Register2D3)) { AGCStorage.Register2D3 = " "; }
-                else { AGCStorage.Register2D3 = AGCValues.Register2D3; }
-                AGCStorage.Register2D4 = AGCValues.Register2D4;
-                AGCStorage.Register2D5 = AGCValues.Register2D5;
-                AGCStorage.Register2Sign = AGCValues.Register2Sign;
-                AGCStorage.Register3D1 = AGCValues.Register3D1;
-                AGCStorage.Register3D2 = AGCValues.Register3D2;
-                if (String.IsNullOrEmpty(AGCValues.Register3D3)) { AGCStorage.Register3D3 = " "; }
-                else { AGCStorage.Register3D3 = AGCValues.Register3D3; }
-                AGCStorage.Register3D4 = AGCValues.Register3D4;
-                AGCStorage.Register3D5 = AGCValues.Register3D5;
-                AGCStorage.Register3Sign = AGCValues.Register3Sign;
-                AGCStorage.IlluminateCompLight = AGCValues.IlluminateCompLight;
-                AGCStorage.IlluminateTemp = AGCValues.IlluminateTemp;
-                AGCStorage.IlluminateGimbalLock = AGCValues.IlluminateGimbalLock;
-                AGCStorage.IlluminateProg = AGCValues.IlluminateProg;
-                AGCStorage.IlluminateRestart = AGCValues.IlluminateRestart;
-                AGCStorage.IlluminateTracker = AGCValues.IlluminateTracker;
-                //AGCStorage.IlluminateAlt = AGCValues.IlluminateAlt;
-                //AGCStorage.IlluminateVel = AGCValues.IlluminateVel;
-                AGCStorage.IlluminateUplinkActy = AGCValues.IlluminateUplinkActy;
-                AGCStorage.IlluminateNoAtt = AGCValues.IlluminateNoAtt;
-                AGCStorage.IlluminateStby = AGCValues.IlluminateStby;
-                AGCStorage.IlluminateKeyRel = AGCValues.IlluminateKeyRel;
-                AGCStorage.IlluminateOprErr = AGCValues.IlluminateOprErr;
+                CMCValues CMCValues = JsonSerializer.Deserialize<CMCValues>(jsonString);
+                CMCStorage.VerbD1 = CMCValues.VerbD1;
+                CMCStorage.VerbD2 = CMCValues.VerbD2;
+                CMCStorage.NounD1 = CMCValues.NounD1;
+                CMCStorage.NounD2 = CMCValues.NounD2;
+                CMCStorage.ProgramD1 = CMCValues.ProgramD1;
+                CMCStorage.ProgramD2 = CMCValues.ProgramD2;
+                CMCStorage.Register1D1 = CMCValues.Register1D1;
+                CMCStorage.Register1D2 = CMCValues.Register1D2;
+                if (String.IsNullOrEmpty(CMCValues.Register1D3)) { CMCStorage.Register1D3 = " "; }
+                else { CMCStorage.Register1D3 = CMCValues.Register1D3; }
+                CMCStorage.Register1D4 = CMCValues.Register1D4;
+                CMCStorage.Register1D5 = CMCValues.Register1D5;
+                CMCStorage.Register1Sign = CMCValues.Register1Sign;
+                CMCStorage.Register2D1 = CMCValues.Register2D1;
+                CMCStorage.Register2D2 = CMCValues.Register2D2;
+                if (String.IsNullOrEmpty(CMCValues.Register2D3)) { CMCStorage.Register2D3 = " "; }
+                else { CMCStorage.Register2D3 = CMCValues.Register2D3; }
+                CMCStorage.Register2D4 = CMCValues.Register2D4;
+                CMCStorage.Register2D5 = CMCValues.Register2D5;
+                CMCStorage.Register2Sign = CMCValues.Register2Sign;
+                CMCStorage.Register3D1 = CMCValues.Register3D1;
+                CMCStorage.Register3D2 = CMCValues.Register3D2;
+                if (String.IsNullOrEmpty(CMCValues.Register3D3)) { CMCStorage.Register3D3 = " "; }
+                else { CMCStorage.Register3D3 = CMCValues.Register3D3; }
+                CMCStorage.Register3D4 = CMCValues.Register3D4;
+                CMCStorage.Register3D5 = CMCValues.Register3D5;
+                CMCStorage.Register3Sign = CMCValues.Register3Sign;
+                CMCStorage.IlluminateCompLight = CMCValues.IlluminateCompLight;
+                CMCStorage.IlluminateTemp = CMCValues.IlluminateTemp;
+                CMCStorage.IlluminateGimbalLock = CMCValues.IlluminateGimbalLock;
+                CMCStorage.IlluminateProg = CMCValues.IlluminateProg;
+                CMCStorage.IlluminateRestart = CMCValues.IlluminateRestart;
+                CMCStorage.IlluminateTracker = CMCValues.IlluminateTracker;
+                CMCStorage.IlluminateUplinkActy = CMCValues.IlluminateUplinkActy;
+                CMCStorage.IlluminateNoAtt = CMCValues.IlluminateNoAtt;
+                CMCStorage.IlluminateStby = CMCValues.IlluminateStby;
+                CMCStorage.IlluminateKeyRel = CMCValues.IlluminateKeyRel;
+                CMCStorage.IlluminateOprErr = CMCValues.IlluminateOprErr;
             }
 #if DEBUG
             catch (IOException e) when ((e.HResult & 0x0000FFFF) == 32)
@@ -452,9 +411,9 @@ if (AreWeDarkMode==true)
             if (AreWeDarkMode == true)
             {
                 //var uriSource = new Uri(@"/ExternalViewer/AGC/agc/images/agc-bg-darkLGC.png", UriKind.Relative);//ImageSource needs to direct to the resource not this resolved file location..
-                var uriSource = new Uri(@"pack://application:,,,/AGC;component/images/agc-bg-dark.png", UriKind.Absolute);//Test to resolve above present in AGC/LGC builds..
+                var uriSource = new Uri(@"pack://application:,,,/CMC;component/images/agc-bg-dark.png", UriKind.Absolute);//Test to resolve above present in AGC/LGC builds..
                 MainBackground.ImageSource = new BitmapImage(uriSource);
-                var uriSource1 = new Uri(@"/AGC;component/images/lights/unlit/unlit-darkmode.png", UriKind.Relative);
+                var uriSource1 = new Uri(@"/CMC;component/images/lights/unlit/unlit-darkmode.png", UriKind.Relative);
                 UplinkActy.Source = new BitmapImage(uriSource1);
                 Alt.Source = new BitmapImage(uriSource1);
                 Gimballock.Source = new BitmapImage(uriSource1);
@@ -472,33 +431,33 @@ if (AreWeDarkMode==true)
             }
             else
             {
-                var uriSource = new Uri(@"pack://application:,,,/AGC;component/images/agc-bg.png", UriKind.Absolute);
+                var uriSource = new Uri(@"pack://application:,,,/CMC;component/images/agc-bg.png", UriKind.Absolute);
                 MainBackground.ImageSource = new BitmapImage(uriSource);
-                var uriSource1 = new Uri(@"/AGC;component/images/lights/unlit/uplinkacty.png", UriKind.Relative);
+                var uriSource1 = new Uri(@"/CMC;component/images/lights/unlit/uplinkacty.png", UriKind.Relative);
                 UplinkActy.Source = new BitmapImage(uriSource1);
-                var uriSource2 = new Uri(@"/AGC;component/images/lights/unlit/noatt.png", UriKind.Relative);
+                var uriSource2 = new Uri(@"/CMC;component/images/lights/unlit/noatt.png", UriKind.Relative);
                 NoAtt.Source = new BitmapImage(uriSource2);
-                var uriSource3 = new Uri(@"/AGC;component/images/lights/unlit/unlit.png", UriKind.Relative);
+                var uriSource3 = new Uri(@"/CMC;component/images/lights/unlit/unlit.png", UriKind.Relative);
                 Alt.Source = new BitmapImage(uriSource3);
-                var uriSource4 = new Uri(@"/AGC;component/images/lights/unlit/gimballock.png", UriKind.Relative);
+                var uriSource4 = new Uri(@"/CMC;component/images/lights/unlit/gimballock.png", UriKind.Relative);
                 Gimballock.Source = new BitmapImage(uriSource4);
-                var uriSource5 = new Uri(@"/AGC;component/images/lights/unlit/keyrel.png", UriKind.Relative);
+                var uriSource5 = new Uri(@"/CMC;component/images/lights/unlit/keyrel.png", UriKind.Relative);
                 KeyRel.Source = new BitmapImage(uriSource5);
-                var uriSource6 = new Uri(@"/AGC;component/images/lights/unlit/oprerr.png", UriKind.Relative);
+                var uriSource6 = new Uri(@"/CMC;component/images/lights/unlit/oprerr.png", UriKind.Relative);
                 OprErr.Source = new BitmapImage(uriSource6);
-                var uriSource7 = new Uri(@"/AGC;component/images/lights/unlit/prog.png", UriKind.Relative);
+                var uriSource7 = new Uri(@"/CMC;component/images/lights/unlit/prog.png", UriKind.Relative);
                 Program.Source = new BitmapImage(uriSource7);
-                var uriSource8 = new Uri(@"/AGC;component/images/lights/unlit/restart.png", UriKind.Relative);
+                var uriSource8 = new Uri(@"/CMC;component/images/lights/unlit/restart.png", UriKind.Relative);
                 Restart.Source = new BitmapImage(uriSource8);
-                var uriSource9 = new Uri(@"/AGC;component/images/lights/unlit/stby.png", UriKind.Relative);
+                var uriSource9 = new Uri(@"/CMC;component/images/lights/unlit/stby.png", UriKind.Relative);
                 Stby.Source = new BitmapImage(uriSource9);
-                var uriSource10 = new Uri(@"/AGC;component/images/lights/unlit/temp.png", UriKind.Relative);
+                var uriSource10 = new Uri(@"/CMC;component/images/lights/unlit/temp.png", UriKind.Relative);
                 Temp.Source = new BitmapImage(uriSource10);
-                var uriSource11 = new Uri(@"/AGC;component/images/lights/unlit/tracker.png", UriKind.Relative);
+                var uriSource11 = new Uri(@"/CMC;component/images/lights/unlit/tracker.png", UriKind.Relative);
                 Tracker.Source = new BitmapImage(uriSource11);
-                var uriSource12 = new Uri(@"/AGC;component/images/lights/unlit/unlit.png", UriKind.Relative);
+                var uriSource12 = new Uri(@"/CMC;component/images/lights/unlit/unlit.png", UriKind.Relative);
                 Vel.Source = new BitmapImage(uriSource12);
-                var uriSource13 = new Uri(@"/AGC;component/images/lights/unlit/unlit.png", UriKind.Relative);
+                var uriSource13 = new Uri(@"/CMC;component/images/lights/unlit/unlit.png", UriKind.Relative);
                 Unlit1.Source = new BitmapImage(uriSource13);
                 Unlit2.Source = new BitmapImage(uriSource13);
             }
@@ -602,10 +561,9 @@ if (AreWeDarkMode==true)
     }
 
     //values to store the serialized data
-    public class AGCStorage
+    public class CMCStorage
     {
         public static bool IsInCM;
-        //public static bool IsInLM;
         public static string ProgramD1;
         public static string ProgramD2;
         public static string VerbD1;
@@ -641,15 +599,12 @@ if (AreWeDarkMode==true)
         public static int IlluminateProg;
         public static int IlluminateRestart;
         public static int IlluminateTracker;
-        //public static int IlluminateAlt;
-        //public static int IlluminateVel;
     }
 
     //Set of values for serializing the jsons
-    public class AGCValues
+    public class CMCValues
     {
         public bool IsInCM { get; set; }
-        //public bool IsInLM { get; set; }
         public string ProgramD1 { get; set; }
         public string ProgramD2 { get; set; }
         public string VerbD1 { get; set; }
@@ -685,7 +640,5 @@ if (AreWeDarkMode==true)
         public int IlluminateProg { get; set; }
         public int IlluminateRestart { get; set; }
         public int IlluminateTracker { get; set; }
-        //public int IlluminateAlt { get; set; }
-        //public int IlluminateVel { get; set; }
     }
 }

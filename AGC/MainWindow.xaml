@@ -1,11 +1,11 @@
-﻿<Window x:Class="AGC.MainWindow"
+﻿<Window x:Class="CMC.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:AGC"
+        xmlns:local="clr-namespace:CMC"
         mc:Ignorable="d"
-        Title="AGC" Height="800" Width="600" ResizeMode="NoResize" Topmost="True" WindowStyle="None" WindowStartupLocation="CenterOwner" Foreground="{x:Null}" AllowsTransparency="True" Icon="/AGC.ico">
+        Title="CMC" Height="800" Width="600" ResizeMode="NoResize" Topmost="True" WindowStyle="None" WindowStartupLocation="CenterOwner" Foreground="{x:Null}" AllowsTransparency="True" Icon="/AGC.ico">
     <!-- Window.Resources allows us to define our template for a hidden WPF button -->
     <Window.Resources>
         <ControlTemplate x:Key="NoMouseOverButtonTemplate"   

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 
-namespace AGC
+namespace CMC
 {
     /// <summary>
     /// Interaction logic for App.xaml

@@ -7,11 +7,11 @@ using System.Windows;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("AGC-Ex")]
-[assembly: AssemblyDescription("AGC ExternalViewer and DSKY for ReEntry")]
+[assembly: AssemblyTitle("CMC-Ex")]
+[assembly: AssemblyDescription("CMC ExternalViewer and DSKY for ReEntry")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Sputterfish")]
-[assembly: AssemblyProduct("AGC External Viewer and DSKY")]
+[assembly: AssemblyProduct("CMC External Viewer and DSKY")]
 [assembly: AssemblyCopyright("No Copyright - Open Source Software")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

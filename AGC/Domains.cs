@@ -47,7 +47,7 @@ using System.Text.Json;
 
 #pragma warning disable CS0649
 
-namespace AGC
+namespace CMC
 {
     internal class Funcs
     {
