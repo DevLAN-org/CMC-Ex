@@ -7,8 +7,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{C1698256-1B41-4EFA-8149-0E8CF7D881D2}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>AGC</RootNamespace>
-    <AssemblyName>AGC</AssemblyName>
+    <RootNamespace>CMC</RootNamespace>
+    <AssemblyName>CMC</AssemblyName>
     <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -259,7 +259,6 @@
     <Resource Include="images\lights\lit\compacty.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\lights\unlit\alt.png" />
     <Resource Include="images\lights\unlit\gimballock.png" />
     <Resource Include="images\lights\unlit\keyrel.png" />
     <Resource Include="images\lights\unlit\noatt.png" />
@@ -270,13 +269,11 @@
     <Resource Include="images\lights\unlit\temp.png" />
     <Resource Include="images\lights\unlit\tracker.png" />
     <Resource Include="images\lights\unlit\uplinkacty.png" />
-    <Resource Include="images\lights\unlit\vel.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\lights\unlit\unlit.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\lights\lit\alt.png" />
     <Resource Include="images\lights\lit\gimballock.png" />
     <Resource Include="images\lights\lit\keyrel.png" />
     <Resource Include="images\lights\lit\noatt.png" />
@@ -287,7 +284,6 @@
     <Resource Include="images\lights\lit\temp.png" />
     <Resource Include="images\lights\lit\tracker.png" />
     <Resource Include="images\lights\lit\uplinkacty.png" />
-    <Resource Include="images\lights\lit\vel.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\agc-bg-dark.png" />
